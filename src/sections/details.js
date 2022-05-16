@@ -64,12 +64,13 @@ const Details = () => {
 
                 <GridItem colSpan={2}>
                     {/* CheckBox */}
-                    <Checkbox defaultChecked>Ship to billing address.</Checkbox>
+                    <Checkbox colorScheme="brand" defaultChecked>Ship to billing address.</Checkbox>
                 </GridItem>
 
                 <GridItem colSpan={2}>
                     {/* Button, bydefault have width="auto", so we have to use w="full" */}
-                    <Button size="lg" w="full">Place Order</Button>
+                    {/* Using colorScheme of Brand */}
+                    <Button colorScheme="brand" size="lg" w="full">Place Order</Button>
                 </GridItem>
             </SimpleGrid>
         </VStack>
