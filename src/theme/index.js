@@ -1,4 +1,25 @@
-const { extendTheme, theme: base } = require("@chakra-ui/react");
+const { extendTheme, theme: base, withDefaultColorScheme, withDefaultVariant } = require("@chakra-ui/react");
+
+// Input based Styles
+const inputSelectStyles = {
+    variants: {
+        filled: {
+            field: {
+                _focus: {
+                    borderColor: 'brand.500'
+                }
+            }
+        }
+    },
+    sizes: {
+        md: {
+            field: {
+                borderRadius: 'none'
+            }
+        }
+    }
+}
+
 
 // Extending themes of Chakra UI
 const theme = extendTheme({
@@ -21,7 +42,34 @@ const theme = extendTheme({
         // Setting base font of heading as fallback
         heading: `Montserrat, ${base.fonts?.heading}`,
         body: `Inter, ${base.fonts?.body}`
+    }, 
+    // Overriding the built-in component's style
+    components:{
+        // Customizing the Input Component
+        Input: { ...inputSelectStyles },
+
+        // Customizing the Select Component
+        Select: { ...inputSelectStyles },
+
+        // Customizing the Checkbox Component
+        Checkbox: {
+            baseStyle: {
+                control: {
+                    borderRadius: 'none',
+                    _focus: {
+                        ring: 2,
+                        ringColor: 'brand.500',
+                    }
+                }
+            }
+        }
     }
-});
+}, withDefaultColorScheme({
+    colorScheme: "brand",
+    components: ['Checkbox']
+}), withDefaultVariant({
+    variant: 'filled',
+    components: ['Input', 'Select']
+}));
 
 export default theme;
