@@ -1,7 +1,10 @@
 
-import { Button, Checkbox, FormControl, FormLabel, GridItem, Heading, Input, Select, SimpleGrid, Text, VStack } from "@chakra-ui/react"
+import { Button, Checkbox, FormControl, FormLabel, GridItem, Heading, Input, Select, SimpleGrid, Text, useBreakpointValue, VStack } from "@chakra-ui/react"
 
 const Details = () => {
+    // Using useBreakPointValue Hook to define values for a particular breakpoint
+    const colSpan = useBreakpointValue({ base: 2, md: 1 });
+
     return (
         <VStack w="full" h="full" p={10} spacing={10} alignItems="flex-start">
             <VStack spacing={3} alignItems="flex-start">
@@ -15,7 +18,7 @@ const Details = () => {
             <SimpleGrid columns={2} columnGap={3} rowGap={6} w="full">
 
                 {/* Grid Item, with colspan property */}
-                <GridItem colSpan={1}>
+                <GridItem colSpan={colSpan}>
                     {/* FormControl to contorl the form functionality */}
                     <FormControl>
                         {/* Label to add label for the form field */}
@@ -25,7 +28,7 @@ const Details = () => {
                     </FormControl>
                 </GridItem>
 
-                <GridItem colSpan={1}>
+                <GridItem colSpan={colSpan}>
                     <FormControl>
                         <FormLabel>Last Name</FormLabel>
                         <Input placeholder="Doe" />
@@ -39,14 +42,14 @@ const Details = () => {
                     </FormControl>
                 </GridItem>
 
-                <GridItem colSpan={1}>
+                <GridItem colSpan={colSpan}>
                     <FormControl>
                         <FormLabel>City</FormLabel>
                         <Input placeholder="San Francisco" />
                     </FormControl>
                 </GridItem>
 
-                <GridItem colSpan={1}>
+                <GridItem colSpan={colSpan}>
                     <FormControl>
                         <FormLabel>Country</FormLabel>
                         {/* Select Box */}
