@@ -69,8 +69,8 @@ const Details = () => {
 
                 <GridItem colSpan={2}>
                     {/* Button, bydefault have width="auto", so we have to use w="full" */}
-                    {/* Using colorScheme of Brand */}
-                    <Button colorScheme="brand" size="lg" w="full">Place Order</Button>
+                    {/* Using primary Variant which we created for Button */}
+                    <Button variant="primary" size="lg" w="full">Place Order</Button>
                 </GridItem>
             </SimpleGrid>
         </VStack>

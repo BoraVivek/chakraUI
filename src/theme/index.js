@@ -1,4 +1,5 @@
 const { extendTheme, theme: base, withDefaultColorScheme, withDefaultVariant } = require("@chakra-ui/react");
+import { mode } from "@chakra-ui/theme-tools"
 
 // Input based Styles
 const inputSelectStyles = {
@@ -20,6 +21,13 @@ const inputSelectStyles = {
     }
 }
 
+const brandRing = {
+    _focus: {
+        ring: 2,
+        ringColor: 'brand.500',
+    }
+}
+
 
 // Extending themes of Chakra UI
 const theme = extendTheme({
@@ -36,15 +44,15 @@ const theme = extendTheme({
             700: '#578602',
             800: '#3c5e00',
             900: '#203300',
-          },
+        },
     },
-    fonts:{
+    fonts: {
         // Setting base font of heading as fallback
         heading: `Montserrat, ${base.fonts?.heading}`,
         body: `Inter, ${base.fonts?.body}`
-    }, 
+    },
     // Overriding the built-in component's style
-    components:{
+    components: {
         // Customizing the Input Component
         Input: { ...inputSelectStyles },
 
@@ -56,11 +64,30 @@ const theme = extendTheme({
             baseStyle: {
                 control: {
                     borderRadius: 'none',
-                    _focus: {
-                        ring: 2,
-                        ringColor: 'brand.500',
-                    }
+                    ...brandRing,
                 }
+            }
+        },
+
+        // Customizing the Button Component
+        Button: {
+            // Creating our own Variant for Button which uses mode function to define different properties based on color(light, dark)
+            variants: {
+                primary: (props) => ({
+                    rounded: 'none',
+                    ...brandRing,
+
+                    color: mode('white','gray.800')(props),
+                    backgroundColor: mode('brand.500', 'brand.200')(props),
+
+                    _hover:{
+                        backgroundColor: mode('brand.600','brand.300')(props),
+                    },
+
+                    _active: {
+                        backgroundColor: mode('brand.700','brand.400')(props)
+                    }
+                })
             }
         }
     }
